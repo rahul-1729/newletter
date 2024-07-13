@@ -1,5 +1,5 @@
 Day 1: Creation (signup feature)  [completed]
-Day 2: Read using primary key
+Day 2: Read using primary key     [completed]
 Day 3: Updation using primary key
 Day 4: Delete usng primary key
 Day 5: sign In feature
