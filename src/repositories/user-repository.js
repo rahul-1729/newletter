@@ -45,5 +45,20 @@ class UserRepository{
             throw error;
          }
     }
+
+    async destroy(email)
+        {
+            try {
+                const response = Users.destroy({
+                    where:{
+                        email:email
+                    }
+                })
+                return response
+            } catch (error) {
+                console.log("Something went wrong in the repository layer")
+                throw error;
+            }
+        }
 }
 module.exports=UserRepository

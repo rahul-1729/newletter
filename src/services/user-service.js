@@ -39,5 +39,15 @@ class UserService
             throw error;
         }
     }
+    async destroy(email)
+    {
+        try {
+            const response =this.userRepository.destroy(email);
+            return response;
+        } catch (error) {
+            console.log('Something went wrong in service layer')
+            throw error;
+        }
+    }
 }
 module.exports= UserService

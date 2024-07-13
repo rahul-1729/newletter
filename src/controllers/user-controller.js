@@ -64,8 +64,26 @@ const update = async(req,res)=>{
     }
    
 }
+
+const destroy = async (req,res)=>
+{  
+    try {
+        const response =userService.destroy(req.params.email);
+        return res.status(200).json({
+            message:"User has been removed from the database",
+            data : response
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message:"User has not been deleted from databse due to some error",
+            error: error.message
+        })
+    }
+
+}
  module.exports={
     create,
     getUser,
-    update
+    update,
+    destroy
  }
