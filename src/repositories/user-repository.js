@@ -29,5 +29,21 @@ class UserRepository{
         }
         
     }
+
+    async update(email,data)
+    {
+         try {
+            const updated_user = Users.update(data,{
+                where:{
+                    email:email
+                }
+             
+            })
+            return updated_user; 
+         } catch (error) {
+            console.log("Something went wrong in the repository layer")
+            throw error;
+         }
+    }
 }
 module.exports=UserRepository

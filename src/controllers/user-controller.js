@@ -45,7 +45,27 @@ const userService = new UserService();
 
    }
 }
+
+const update = async(req,res)=>{
+    try {
+        const user = await userService.update(req.params.email,req.body);
+        console.log(user);
+        return res.status(200).json({
+            message:"Data has been updated"
+        })
+    } catch (error) {
+        return res.status(500).json(
+            {
+               message:"For some reason we can't update your data",
+               error:error.message
+            }
+        )
+        
+    }
+   
+}
  module.exports={
     create,
-    getUser
+    getUser,
+    update
  }
