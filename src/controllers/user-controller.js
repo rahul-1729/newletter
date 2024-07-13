@@ -20,6 +20,32 @@ const userService = new UserService();
     }
     
  }
+
+ const getUser = async(req,res)=>
+    { 
+       
+        try {
+            const user = await userService.getUser(req.params.email);
+            if(user==null)
+            return res.status(200).json({
+                message:"Sorry no  user with that email id is found",
+            })
+
+            return res.status(200).json({
+                message:"Success",
+                data:user
+            })
+        } catch (error) {
+            console.log('Something went wrong in service layer')
+        return res.status(200).json({
+            message:"Failed",
+            error:error.message
+        })
+    
+
+   }
+}
  module.exports={
-    create
+    create,
+    getUser
  }

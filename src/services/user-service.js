@@ -18,5 +18,16 @@ class UserService
             throw error;
         }
     }
+
+    async getUser(email)
+    {
+        try {
+            const user =await this.userRepository.getUser(email)
+            return user;
+        } catch (error) {
+            console.log('Something went wrong in service layer')
+            throw error;
+        }
+    }
 }
 module.exports= UserService
