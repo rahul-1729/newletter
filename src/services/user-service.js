@@ -49,5 +49,16 @@ class UserService
             throw error;
         }
     }
+
+    async signin(email,password)
+    {
+        try {
+            const response =this.userRepository.signin(email,password);
+            return response;
+        } catch (error) {
+            console.log('Something went wrong in service layer')
+            throw error;
+        }
+    }
 }
 module.exports= UserService

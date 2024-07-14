@@ -22,6 +22,7 @@ class UserRepository{
                     email:email
                 }
             })
+            // console.log(user.password);
             return user;
         } catch (error) {
             console.log("something went wrong in the repo layer")
@@ -60,5 +61,23 @@ class UserRepository{
                 throw error;
             }
         }
+
+    async signin(email,password)
+    {
+        try {
+            const user = await Users.findOne({
+                where:{
+                    email:email
+                }
+            })
+            if(user.password===password)
+            return true;
+            else 
+            return false;
+        } catch (error) {
+            console.log("Something went wrong in the repository layer")
+            throw error;
+        }
+    }
 }
 module.exports=UserRepository

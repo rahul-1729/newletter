@@ -1,3 +1,4 @@
+const { message } = require('prompt');
 const{UserService}=require('../services/index.js')
 
 const userService = new UserService();
@@ -81,9 +82,30 @@ const destroy = async (req,res)=>
     }
 
 }
+const signin =async(req,res)=>{
+    try {
+        const email =req.query.email;
+        const password = req.query.password;
+        const response = await userService.signin(email,password);
+        if(response)
+        return res.status(200).json({
+            message : "you have been signed in"
+        })
+        else
+        return res.status(200).json({
+            message : "you have given wrong credentials"
+        })
+
+    } catch (error) {
+        return res.status(200).json({
+            error:message.error
+        })
+    }
+}
  module.exports={
     create,
     getUser,
     update,
-    destroy
+    destroy,
+    signin
  }
