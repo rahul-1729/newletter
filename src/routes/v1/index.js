@@ -4,9 +4,9 @@ const router = express.Router();
 const {UserController}=require('../../controllers/index.js')
 
 router.post('/signup',UserController.create)
-router.get('/info/:email',UserController.getUser)
-router.patch('/update/:email',UserController.update)
-router.delete('/delete/:email',UserController.destroy)
+router.get('/info',UserController.getUser)
+router.patch('/update',UserController.update)
+router.delete('/delete',UserController.destroy)
 router.get('/signin',UserController.signin)
 
 

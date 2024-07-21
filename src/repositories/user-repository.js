@@ -1,6 +1,7 @@
 const{Users}=require('../models/index');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const jwt = require('jsonwebtoken')
 
 class UserRepository{
     async create(data)
@@ -82,9 +83,13 @@ class UserRepository{
             const match = await bcrypt.compare(password, user.password)
 
             if(match)
-            return true;
-            else 
-            return false;
+            {    
+                const token = await jwt.sign({user:email}, 'privatekey', { expiresIn: '1h' });
+                return token;
+            } 
+            else {
+                 console.log('ERROR: Could not log in');
+            }
         } catch (error) {
             console.log("Something went wrong in the repository layer")
             throw error;

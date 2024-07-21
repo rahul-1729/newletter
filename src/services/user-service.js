@@ -54,6 +54,7 @@ class UserService
     {
         try {
             const response =this.userRepository.signin(email,password);
+            console.log(response)
             return response;
         } catch (error) {
             console.log('Something went wrong in service layer')
