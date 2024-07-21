@@ -1,11 +1,20 @@
 const{Users}=require('../models/index');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 class UserRepository{
     async create(data)
     {
         try {
-           
-            const user = await Users.create(data);
+                  const hash = await bcrypt.hash(data.password, saltRounds)
+                  
+                    const user = await Users.create({
+                        firstName: data.firstName,
+                        lastName:  data.lastName,
+                        email:     data.email,
+                        password:   hash
+                    });
+                
             return user;
         } catch (error) {
             console.log('Something went wrong in repository layer')
@@ -70,7 +79,9 @@ class UserRepository{
                     email:email
                 }
             })
-            if(user.password===password)
+            const match = await bcrypt.compare(password, user.password)
+
+            if(match)
             return true;
             else 
             return false;

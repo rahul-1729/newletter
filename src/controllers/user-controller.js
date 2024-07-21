@@ -9,8 +9,7 @@ const userService = new UserService();
         
         const user =await userService.create(req.body);
         return res.status(200).json({
-            message:"Success",
-            data:user
+            message:"Successfully created account"
         })
     } catch (error) {
         console.log('Something went wrong in service layer')
