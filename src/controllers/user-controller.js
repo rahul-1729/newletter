@@ -1,7 +1,7 @@
 const { message } = require('prompt');
 const{UserService}=require('../services/index.js')
 const jwt = require('jsonwebtoken')
-const SECRET_KEY = 'privatekey';
+const {SECRET_KEY}=require('../config/serverConfig');
 
 function verifyJWT(token)
 {
@@ -45,13 +45,13 @@ const userService = new UserService();
 
             const token = authHeader.split(' ')[1];
             const data = verifyJWT(token);
-            console.log(data.user);
+            
 
-            if (!data.user) {
+            if (data==null||!data.userId) {
                 return res.status(403).json({ message: 'Token is invalid or expired!' });
             }
 
-            const user = await userService.getUser(data.user);
+            const user = await userService.getUser(data.userId);
             if(user==null)
             return res.status(200).json({
                 message:"Sorry no  user with that email id is found",
@@ -74,24 +74,34 @@ const userService = new UserService();
 
 const update = async(req,res)=>{
     try {
-
+        //   console.log(req.headers);
         const authHeader = req.headers['authorization'];
+        // console.log(authHeader)
+       
         if(!authHeader)
         {
             return res.status(403).json({ message: 'Token is missing!' });
         }
-
+      
         const token = authHeader.split(' ')[1];
+        // console.log(token)
         const data = verifyJWT(token);
+        // console.log(data.userId);
         
-        if (!data.user) {
+      
+
+        if (data==null||!data.userId) {
             return res.status(403).json({ message: 'Token is invalid or expired!' });
         }
+        
+        const newInfo ={...req.body} 
 
-        const user = await userService.update(data.user,data.newInfo);
-        console.log(user);
+        const user = await userService.update(data.userId,newInfo);
+        
         return res.status(200).json({
-            message:"Data has been updated"
+            message:"Data has been updated",
+            updated_data: {...newInfo,email:data.userId}
+            
         })
     } catch (error) {
         return res.status(500).json(
@@ -117,10 +127,10 @@ const destroy = async (req,res)=>
         const token = authHeader.split(' ')[1];
         const data = verifyJWT(token);
         
-        if (!data.user) {
+        if (data==null||!data.userId) {
             return res.status(403).json({ message: 'Token is invalid or expired!' });
         }
-        const response =userService.destroy(data.user);
+        const response =userService.destroy(data.userId);
         return res.status(200).json({
             message:"User has been removed from the database",
             data : response

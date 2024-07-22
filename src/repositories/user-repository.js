@@ -2,7 +2,7 @@ const{Users}=require('../models/index');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken')
-
+const {SECRET_KEY}=require('../config/serverConfig');
 class UserRepository{
     async create(data)
     {
@@ -44,6 +44,11 @@ class UserRepository{
     async update(email,data)
     {
          try {
+              
+            const hash = await bcrypt.hash(data.password, saltRounds)
+            data.password = hash;
+            console.log(data);
+           
             const updated_user = Users.update(data,{
                 where:{
                     email:email
@@ -84,7 +89,8 @@ class UserRepository{
 
             if(match)
             {    
-                const token = await jwt.sign({user:email}, 'privatekey', { expiresIn: '1h' });
+                console.log(user.email)  
+                const token = await jwt.sign({userId:user.email},SECRET_KEY,{ expiresIn: '1h' });
                 return token;
             } 
             else {
