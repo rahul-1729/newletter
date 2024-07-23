@@ -1,7 +1,7 @@
 const { message } = require('prompt');
 const{UserService}=require('../services/index.js')
 const jwt = require('jsonwebtoken')
-const {SECRET_KEY}=require('../config/serverConfig');
+const {SECRET_KEY}=require('../config/serverConfig.js');
 
 function verifyJWT(token)
 {

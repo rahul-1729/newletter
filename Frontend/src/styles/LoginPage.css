@@ -1,0 +1,88 @@
+ /* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container {
+  background-color: rgba(255, 255, 255, 0.342); /* Semi-transparent overlay */
+  padding: 20px 40px;
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  max-width: 400px;
+  width: 100%;
+  border-right: 2px solid  rgba(255, 255, 255, 0.3);
+  border-bottom: 4px solid rgba(255, 255, 255, 0.3);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+  color: #333333;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.login-container .input-group label {
+  margin-bottom: 5px;
+  color: #3d3d3d;
+  font-size: 16px;
+  font-weight:lighter;
+  display: block;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px;
+  margin-bottom: 13px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+.para
+{ 
+  color: #535353;
+  font-size: 16px;
+  text-align: center;
+}
+.no-underline {
+  text-decoration: none;
+  color: #504fb3; 
+}
+.no-underline:hover {
+  text-decoration: underline; 
+}
+
+
+
