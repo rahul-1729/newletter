@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useNavigate,Link } from 'react-router-dom';
 import '../styles/SignupPage.css';
 
@@ -7,6 +8,7 @@ const SignupPage = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleFirstNameChange = (e) => {
@@ -25,14 +27,25 @@ const SignupPage = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    navigate.push('/home')
-    // Handle form submission
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
-    console.log('Email:', email);
-    console.log('Password:', password);
+     const userData = {
+      firstName,
+      lastName,
+      email,
+      password,
+    };
+
+    try {
+      // Make the POST request to your backend API
+      const response = await axios.post('http://localhost:3500/api/v1/signup', userData);
+      console.log('User registered:', response.data);
+      navigate('/home')
+    } catch (err) {
+      console.error('Error registering user:', err);
+      setError('Registration failed. Please try again.');
+    }
+    
   };
 
   return (
@@ -85,7 +98,7 @@ const SignupPage = () => {
         </div>
         <button type="submit">Sign Up</button>
         <p className='para'>
-          Already have an account? <Link to="/login" className="no-underline">Login</Link>
+          Already have an account? <Link to="/" className="no-underline">Login</Link>
         </p>
       </form>
     </div>

@@ -42,7 +42,7 @@ class UserService
     async destroy(email)
     {
         try {
-            const response =this.userRepository.destroy(email);
+            const response =await this.userRepository.destroy(email);
             return response;
         } catch (error) {
             console.log('Something went wrong in service layer')
@@ -53,8 +53,7 @@ class UserService
     async signin(email,password)
     {
         try {
-            const response =this.userRepository.signin(email,password);
-            console.log(response)
+            const response = await this.userRepository.signin(email,password);
             return response;
         } catch (error) {
             console.log('Something went wrong in service layer')

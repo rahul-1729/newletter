@@ -7,7 +7,7 @@ router.post('/signup',UserController.create)
 router.get('/info',UserController.getUser)
 router.patch('/update',UserController.update)
 router.delete('/delete',UserController.destroy)
-router.get('/signin',UserController.signin)
+router.post('/signin',UserController.signin)
 
 
 module.exports = router;

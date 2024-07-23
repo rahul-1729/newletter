@@ -145,17 +145,30 @@ const destroy = async (req,res)=>
 }
 const signin =async(req,res)=>{
     try {
-        const email =req.query.email;
-        const password = req.query.password;
+        
+        const email =req.body["email"];
+     
+        const password = req.body["password"];
+ 
         const response = await userService.signin(email,password);
         if(response)
-        return res.status(200).json({
-            message : response
-        })
+        {  
+             // send this as cookie when you integrate token based session*******
+            // return res.status(200).json({
+            //     message : response
+            // })
+          
+            return true;
+        }
+        
         else
-        return res.status(200).json({
-            message : "you have given wrong credentials"
-        })
+        {
+            // return res.status(200).json({
+            //     message : "you have given wrong credentials"
+            // })
+            return false;
+        }
+       
 
     } catch (error) {
         return res.status(200).json({

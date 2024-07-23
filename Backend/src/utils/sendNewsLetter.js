@@ -8,7 +8,7 @@ async function sendNewsletter() {
   const emails = await getRegisteredEmails();
 //   console.log(emails);
   
- await sendEmails(emails, '/home/aeyravat/Downloads/CRUD using sequelize/newsletter.pdf');
+ await sendEmails(emails, '/home/aeyravat/Downloads/NewsLetter/Backend/newsletter.pdf');
   
 }
 

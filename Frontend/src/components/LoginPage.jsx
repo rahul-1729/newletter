@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/LoginPage.css';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
@@ -15,16 +17,22 @@ const LoginPage = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     // Logic to check if user exists
-    const userExists = true; // Replace this with actual logic
+    const userData = {
+      email,
+      password,
+    };
+  
+    const userExists = await axios.post('http://localhost:3500/api/v1/signin', userData); // Replace this with actual logic
+     console.log(userExists)
     if (userExists) {
       // Proceed with login
-      navigate.push('/home');
+      navigate('/home');
     } else {
       // Redirect to signup page
-      navigate.push('/signup');
+      navigate('/signup');
     }
   };
 

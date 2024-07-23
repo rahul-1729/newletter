@@ -89,7 +89,7 @@ class UserRepository{
 
             if(match)
             {    
-                console.log(user.email)  
+                
                 const token = await jwt.sign({userId:user.email},SECRET_KEY,{ expiresIn: '1h' });
                 return token;
             } 
