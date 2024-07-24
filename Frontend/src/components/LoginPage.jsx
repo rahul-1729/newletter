@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import '../styles/LoginPage.css';
+import styles from '../styles/LoginPage.module.css'; // Import the CSS Module
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -17,30 +18,30 @@ const LoginPage = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Logic to check if user exists
-    const userData = {
-      email,
-      password,
-    };
-  
-    const userExists = await axios.post('http://localhost:3500/api/v1/signin', userData); 
-    console.log(userExists.data.token)
-     console.log(userExists.data.message)
-    if (userExists.data.message) {
-      // Proceed with login
-      navigate('/home');
-    } else {
-      setError("wrong Credentials")
+    const userData = { email, password };
+
+    try {
+      const userExists = await axios.post('http://localhost:3500/api/v1/signin', userData);
+      console.log(userExists.data.token);
+      console.log(userExists.data.message);
+      if (userExists.data.message) {
+        navigate('/home'); // Proceed with login
+      } else {
+        setError("Wrong Credentials");
+      }
+    } catch (err) {
+      console.error('Error logging in:', err);
+      setError("An error occurred. Please try again.");
     }
   };
 
   return (
-    <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
+    <div className={styles.loginContainer}>
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
         <h2>Login</h2>
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -51,7 +52,7 @@ const LoginPage = () => {
             required
           />
         </div>
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -62,10 +63,10 @@ const LoginPage = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
-        {error&&<p className='throwError'>{error}</p>}
-        <p className="para">
-          Create an account <Link to="/signup" className="no-underline">SignUp</Link>
+        <button type="submit" className={styles.button}>Login</button>
+        {error && <p className={styles.errorMessage}>{error}</p>}
+        <p className={styles.para}>
+          Create an account <Link to="/signup" className={styles.noUnderline}>SignUp</Link>
         </p>
       </form>
     </div>

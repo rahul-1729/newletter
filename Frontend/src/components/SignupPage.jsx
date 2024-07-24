@@ -1,7 +1,9 @@
+
+
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate,Link } from 'react-router-dom';
-import '../styles/SignupPage.css';
+import { useNavigate, Link } from 'react-router-dom';
+import styles from '../styles/SignupPage.module.css'; // Import the CSS Module
 
 const SignupPage = () => {
   const [firstName, setFirstName] = useState('');
@@ -27,9 +29,9 @@ const SignupPage = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-     const userData = {
+    const userData = {
       firstName,
       lastName,
       email,
@@ -37,21 +39,19 @@ const SignupPage = () => {
     };
 
     try {
-      // Make the POST request to your backend API
-      const response = await axios.post('http://localhost:3500/api/v1/signup', userData);
-      navigate('/home')
+      await axios.post('http://localhost:3500/api/v1/signup', userData);
+      navigate('/home');
     } catch (err) {
       console.error('Error registering user:', err);
       setError('Registration failed. Please try again.');
     }
-    
   };
 
   return (
-    <div className="signup-container">
-      <form className="signup-form" onSubmit={handleSubmit}>
+    <div className={styles.signupContainer}>
+      <form className={styles.signupForm} onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label htmlFor="firstName">First Name</label>
           <input
             type="text"
@@ -62,7 +62,7 @@ const SignupPage = () => {
             required
           />
         </div>
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label htmlFor="lastName">Last Name</label>
           <input
             type="text"
@@ -73,7 +73,7 @@ const SignupPage = () => {
             required
           />
         </div>
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -84,7 +84,7 @@ const SignupPage = () => {
             required
           />
         </div>
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -95,9 +95,9 @@ const SignupPage = () => {
             required
           />
         </div>
-        <button type="submit">Sign Up</button>
-        <p className='para'>
-          Already have an account? <Link to="/" className="no-underline">Login</Link>
+        <button type="submit" className={styles.button}>Sign Up</button>
+        <p className={styles.para}>
+          Already have an account? <Link to="/" className={styles.noUnderline}>Login</Link>
         </p>
       </form>
     </div>
@@ -105,3 +105,6 @@ const SignupPage = () => {
 };
 
 export default SignupPage;
+
+
+

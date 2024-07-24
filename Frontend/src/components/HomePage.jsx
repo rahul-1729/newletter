@@ -1,10 +1,15 @@
 import React from 'react';
+import Navbar from './Navbar';
+import styles from '../styles/HomePage.module.css';
 
 const HomePage = () => {
   return (
-    <div className="home-container">
-      <h1>Welcome to the Home Page</h1>
-      <p>You are successfully logged in.</p>
+    <div>
+      <Navbar />
+      <div className={styles.homepageContainer}>
+        <h1>Welcome to My Website</h1>
+        <p>This is the homepage content.</p>
+      </div>
     </div>
   );
 };
