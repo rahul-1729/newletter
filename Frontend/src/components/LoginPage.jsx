@@ -25,14 +25,14 @@ const LoginPage = () => {
       password,
     };
   
-    const userExists = await axios.post('http://localhost:3500/api/v1/signin', userData); // Replace this with actual logic
-     console.log(userExists)
-    if (userExists) {
+    const userExists = await axios.post('http://localhost:3500/api/v1/signin', userData); 
+    console.log(userExists.data.token)
+     console.log(userExists.data.message)
+    if (userExists.data.message) {
       // Proceed with login
       navigate('/home');
     } else {
-      // Redirect to signup page
-      navigate('/signup');
+      setError("wrong Credentials")
     }
   };
 
@@ -63,6 +63,7 @@ const LoginPage = () => {
           />
         </div>
         <button type="submit">Login</button>
+        {error&&<p className='throwError'>{error}</p>}
         <p className="para">
           Create an account <Link to="/signup" className="no-underline">SignUp</Link>
         </p>

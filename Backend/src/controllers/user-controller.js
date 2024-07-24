@@ -153,20 +153,21 @@ const signin =async(req,res)=>{
         const response = await userService.signin(email,password);
         if(response)
         {  
-             // send this as cookie when you integrate token based session*******
-            // return res.status(200).json({
-            //     message : response
-            // })
+             // send token that is response as cookie when you integrate token based session*******
+            return res.status(200).json({
+                token:response,
+                message:true
+            })
           
-            return true;
         }
         
         else
         {
-            // return res.status(200).json({
-            //     message : "you have given wrong credentials"
-            // })
-            return false;
+            return res.status(200).json({
+                // message : "you have given wrong credentials"
+                message:false
+            })
+            
         }
        
 

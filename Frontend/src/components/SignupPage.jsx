@@ -39,7 +39,6 @@ const SignupPage = () => {
     try {
       // Make the POST request to your backend API
       const response = await axios.post('http://localhost:3500/api/v1/signup', userData);
-      console.log('User registered:', response.data);
       navigate('/home')
     } catch (err) {
       console.error('Error registering user:', err);
