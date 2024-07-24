@@ -40,7 +40,7 @@ const SignupPage = () => {
 
     try {
       await axios.post('http://localhost:3500/api/v1/signup', userData);
-      navigate('/home');
+      navigate('/');
     } catch (err) {
       console.error('Error registering user:', err);
       setError('Registration failed. Please try again.');
@@ -97,7 +97,7 @@ const SignupPage = () => {
         </div>
         <button type="submit" className={styles.button}>Sign Up</button>
         <p className={styles.para}>
-          Already have an account? <Link to="/" className={styles.noUnderline}>Login</Link>
+          Already have an account? <Link to="/signin" className={styles.noUnderline}>Login</Link>
         </p>
       </form>
     </div>

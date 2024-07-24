@@ -27,7 +27,7 @@ const LoginPage = () => {
       console.log(userExists.data.token);
       console.log(userExists.data.message);
       if (userExists.data.message) {
-        navigate('/home'); // Proceed with login
+        navigate('/'); // Proceed with login
       } else {
         setError("Wrong Credentials");
       }
