@@ -34,9 +34,9 @@ const Navbar = () => {
           <span className={styles.navbarIcon}></span>
         </button>
         <div className={`${styles.navbarMenu}`}>
-          <a href="#signup" className={styles.navbarItem}>Signup</a>
-          <a href="#login" className={styles.navbarItem}>Login</a>
-          <a href="#about" className={styles.navbarItem}>About</a>
+          <a href="" className={styles.navbarItem} onClick={redirect_signup}>Signup</a>
+          <a href="" className={styles.navbarItem} onClick={redirect_login}>Login</a>
+          <a href="" className={styles.navbarItem} onClick={redirect_about}>About Me</a>
         </div>
         <div className={styles.navbarBrand}>My Website</div>
       </div>
@@ -44,7 +44,7 @@ const Navbar = () => {
      <div className={`${styles.sliderMenu} ${isOpen ? styles.isOpen : ''}`}>
      <a href="" className={styles.sliderItem} onClick={redirect_signup}>Signup</a>
      <a href="" className={styles.sliderItem} onClick={redirect_login}>Login</a>
-     <a href="" className={styles.sliderItem} onClick={redirect_about}>About</a>
+     <a href="" className={styles.sliderItem} onClick={redirect_about}>About Me</a>
    </div>
    </div>
   );

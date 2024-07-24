@@ -3,7 +3,7 @@ const getRegisteredEmails = require('./getRegisteredEmails');
 const sendEmails = require('./sendEmails');
 
 async function sendNewsletter() {
-  const content = 'This is the content of the weekly newsletter.';
+  const content = 'Hope get more in this world of never ending greed';
   await generatePDF(content);
   const emails = await getRegisteredEmails();
 //   console.log(emails);

@@ -7,6 +7,6 @@ Day 4: Delete usng email          [completed]
 Day 5: sign In feature            [completed]
 Day 6: bycript implementation     [completed]
 Day 7: Authentication using JWT   [completed]
-Day 8: send newsletter using cron
-DAy 9: Frontend
+Day 8: send newsletter using cron [completed]
+DAy 9: Frontend                   [basic completed]
 day 9: error-handling
