@@ -18,9 +18,9 @@ const setUPAndStart =()=>{
     app.listen(PORT,()=>{
 
          
-        cron.schedule('*/7 * * * * *',async()=>{
-            await sendNewsLetter();
-        });
+        // cron.schedule('*/7 * * * * *',async()=>{
+        //     await sendNewsLetter();
+        // });
 
         console.log(`Server started on port ${PORT}`);
     })
