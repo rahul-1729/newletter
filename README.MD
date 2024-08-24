@@ -8,3 +8,7 @@
 - JWT token is used for user's comfort
 - All the registered user's will recieve wealky newsletter in there mail
 - user can delete there user id whenever they want
+
+## Setup
+- clone the project from github into your local machine
+- execute the command `npm install` in you terminal
