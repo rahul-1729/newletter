@@ -19,6 +19,12 @@ const userService = new UserService();
     try {
 
         const user =await userService.create(req.body);
+        if(!user)
+        {
+            return res.status(401).json({
+                message:"User already exists"
+            })
+        }
         return res.status(200).json({
             message:"Successfully created account"
         })

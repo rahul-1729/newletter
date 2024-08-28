@@ -8,15 +8,30 @@ class UserRepository{
     {
         try {
                   const hash = await bcrypt.hash(data.password, saltRounds)
-                  
-                    const user = await Users.create({
-                        firstName: data.firstName,
-                        lastName:  data.lastName,
-                        email:     data.email,
-                        password:   hash
-                    });
-                
-            return user;
+                   
+                    const user1 = await Users.findOne({
+                        where:{
+                            email:data.email
+                        }
+                    })
+                    if(user1)
+                    {
+                        return null;
+
+                    }
+                    else
+                    {
+                        const user = await Users.create({
+                            firstName: data.firstName,
+                            lastName:  data.lastName,
+                            email:     data.email,
+                            password:   hash
+                        });
+    
+                    
+                return user;
+                    }
+                   
         } catch (error) {
             console.log('Something went wrong in repository layer')
             throw error;
